@@ -1,26 +1,41 @@
 import React from "react";
-import { Box, useStyleConfig } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import Rating from "./Components/Rating";
 
-function App() {
-  const styles = useStyleConfig("App", { baseStyle });
+export default function App() {
+  const [state, setState] = React.useState(true);
+  const [rating, setRating] = React.useState(false);
+  const isRatingState = state;
+
+  const handleClick = () => {
+    setState(!state);
+  };
+
+  const activeBtn = () => {
+    setRating(!rating);
+  };
+
   return (
-    // Rating state start
     <Box display="flex" alignItems="center" justifyContent="center" m="20vh">
-      <Box boxSize="sm" bg="tomato" p="2%" borderRadius="20px">
-        <Box>How did we do?</Box>
-        Please let us know how we did with your support request. All feedback is
-        appreciated to help us improve our offering! 1 2 3 4 5 Submit
-        {/* Rating state end */}
-        {/* Thank you state start */}
-        You selected
-        {/* Add rating here*/} out of 5 Thank you!
-        <Box>
-          We appreciate you taking the time to give a rating. If you ever need
-          more support, don’t hesitate to get in touch!
-        </Box>
+      <Box
+        boxSize="sm"
+        bgGradient="linear(to-b,hsl(213, 19%, 18%), hsl(216, 12%, 8%))"
+        p="2%"
+        borderRadius="20px"
+      >
+        {isRatingState ? (
+          <Rating
+            clickFunc={handleClick}
+            isActive={rating}
+            activate={activeBtn}
+          />
+        ) : (
+          <Box color="white">
+            We appreciate you taking the time to give a rating. If you ever need
+            more support, don’t hesitate to get in touch!
+          </Box>
+        )}
       </Box>
     </Box>
   );
 }
-
-export default App;
