@@ -1,9 +1,17 @@
 import React from "react";
 import { Box, Button, Flex, ButtonGroup } from "@chakra-ui/react";
+import { RatingType } from "../App";
 
-export default function Rating(props: any) {
+type RatingProps = {
+  isActive: RatingType;
+  clickFunc: () => void;
+  activate: (button: number) => void;
+};
+
+export default function Rating({ isActive, clickFunc, activate }: RatingProps) {
+  const array = [1, 2, 3, 4, 5];
+
   return (
-    // Rating state start
     <>
       <Box py="10%" bg="hsl(213, 19%, 18%)">
         <svg width="17" height="16" xmlns="http://www.w3.org/2000/svg">
@@ -35,51 +43,22 @@ export default function Rating(props: any) {
           height="100%"
           pt="10%"
         >
-          <Button
-            bg="hsl(213, 19%, 18%)"
-            color="hsl(216, 12%, 54%)"
-            borderRadius="50%"
-            isActive={props.isActive}
-            onClick={props.activate}
-          >
-            1
-          </Button>
-          <Button
-            bg="hsl(213, 19%, 18%)"
-            color="hsl(216, 12%, 54%)"
-            borderRadius="50%"
-            isActive={props.isActive}
-            onClick={props.activate}
-          >
-            2
-          </Button>
-          <Button
-            bg="hsl(213, 19%, 18%)"
-            color="hsl(216, 12%, 54%)"
-            borderRadius="50%"
-            isActive={props.isActive}
-            onClick={props.activate}
-          >
-            3
-          </Button>
-          <Button
-            bg="hsl(213, 19%, 18%)"
-            color="hsl(216, 12%, 54%)"
-            borderRadius="50%"
-            isActive={props.isActive}
-            onClick={props.activate}
-          >
-            4
-          </Button>
-          <Button
-            bg="hsl(213, 19%, 18%)"
-            color="hsl(216, 12%, 54%)"
-            borderRadius="50%"
-            isActive={props.isActive}
-            onClick={props.activate}
-          >
-            5
-          </Button>
+          {array.map((button, index) => {
+            return (
+              <Button
+                bg="hsl(213, 19%, 18%)"
+                color="hsl(216, 12%, 54%)"
+                borderRadius="50%"
+                isActive={isActive[button]}
+                onClick={() => activate(button)}
+                value={button}
+                _hover={{ bg: "hsl(216, 12%, 54%)", color: "white" }}
+                _active={{ bg: "hsl(25, 97%, 53%)", color: "white" }}
+              >
+                {index + 1}
+              </Button>
+            );
+          })}
         </ButtonGroup>
 
         <Button
@@ -90,7 +69,8 @@ export default function Rating(props: any) {
           width="100%"
           textTransform="uppercase"
           letterSpacing="2px"
-          onClick={props.clickFunc}
+          onClick={clickFunc}
+          _hover={{ bg: "white", color: "hsl(25, 97%, 53%)" }}
         >
           Submit
         </Button>

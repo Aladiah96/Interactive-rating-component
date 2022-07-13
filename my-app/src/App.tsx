@@ -1,18 +1,28 @@
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import Rating from "./Components/Rating";
+import Thanks from "./Components/Thanks";
+
+export type RatingType = Record<number, boolean>;
 
 export default function App() {
   const [state, setState] = React.useState(true);
-  const [rating, setRating] = React.useState(false);
+  const initialRatingState = {
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+  };
+  const [rating, setRating] = React.useState<RatingType>(initialRatingState);
   const isRatingState = state;
 
   const handleClick = () => {
     setState(!state);
   };
 
-  const activeBtn = () => {
-    setRating(!rating);
+  const activeBtn = (button: number) => {
+    setRating({ ...initialRatingState, [button]: true });
   };
 
   return (
@@ -30,10 +40,7 @@ export default function App() {
             activate={activeBtn}
           />
         ) : (
-          <Box color="white">
-            We appreciate you taking the time to give a rating. If you ever need
-            more support, don’t hesitate to get in touch!
-          </Box>
+          <Thanks />
         )}
       </Box>
     </Box>
