@@ -40,6 +40,7 @@ export default function App() {
             activate={activeBtn}
           />
         ) : (
+          // TODO: pass the value of the button clicked to the Thanks component probably from a form submit
           <Thanks />
         )}
       </Box>
