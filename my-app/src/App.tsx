@@ -17,6 +17,8 @@ export default function App() {
   const [rating, setRating] = React.useState<RatingType>(initialRatingState);
   const isRatingState = state;
 
+  const keys = Object.keys(rating);
+
   const handleClick = () => {
     setState(!state);
   };
@@ -40,8 +42,11 @@ export default function App() {
             activate={activeBtn}
           />
         ) : (
-          // TODO: pass the value of the button clicked to the Thanks component probably from a form submit
-          <Thanks />
+          <Thanks
+            ratingValue={keys.filter(function (key: any) {
+              return rating[key];
+            })}
+          />
         )}
       </Box>
     </Box>

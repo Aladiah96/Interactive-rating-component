@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Flex, ButtonGroup } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, Flex, FormControl } from "@chakra-ui/react";
 import { RatingType } from "../App";
 
 type RatingProps = {
@@ -34,46 +34,48 @@ export default function Rating({ isActive, clickFunc, activate }: RatingProps) {
         justifyContent="center"
         alignItems="center"
       >
-        <ButtonGroup
-          width="100%"
-          spacing="6"
-          alignItems="center"
-          textAlign="center"
-          justifyContent="space-between"
-          height="100%"
-          pt="10%"
-        >
-          {array.map((button, index) => {
-            return (
-              <Button
-                bg="hsl(213, 19%, 18%)"
-                color="hsl(216, 12%, 54%)"
-                borderRadius="50%"
-                isActive={isActive[button]}
-                onClick={() => activate(button)}
-                value={button}
-                _hover={{ bg: "hsl(216, 12%, 54%)", color: "white" }}
-                _active={{ bg: "hsl(25, 97%, 53%)", color: "white" }}
-              >
-                {index + 1}
-              </Button>
-            );
-          })}
-        </ButtonGroup>
-
-        <Button
-          bg="hsl(25, 97%, 53%)"
-          borderRadius="20px"
-          p="5%"
-          m="5%"
-          width="100%"
-          textTransform="uppercase"
-          letterSpacing="2px"
-          onClick={clickFunc}
-          _hover={{ bg: "white", color: "hsl(25, 97%, 53%)" }}
-        >
-          Submit
-        </Button>
+        <FormControl>
+          <ButtonGroup
+            width="100%"
+            alignItems="center"
+            textAlign="center"
+            justifyContent="space-between"
+            height="100%"
+            pt="10%"
+          >
+            {array.map((button, index) => {
+              return (
+                <Button
+                  key={index}
+                  bg="hsl(213, 19%, 18%)"
+                  color="hsl(216, 12%, 54%)"
+                  borderRadius="50%"
+                  isActive={isActive[button]}
+                  onClick={() => activate(button)}
+                  value={button}
+                  _hover={{ bg: "hsl(216, 12%, 54%)", color: "white" }}
+                  _active={{ bg: "hsl(25, 97%, 53%)", color: "white" }}
+                >
+                  {index + 1}
+                </Button>
+              );
+            })}
+          </ButtonGroup>
+          <Button
+            bg="hsl(25, 97%, 53%)"
+            borderRadius="20px"
+            type="submit"
+            p="5%"
+            mt="8%"
+            width="100%"
+            textTransform="uppercase"
+            letterSpacing="2px"
+            onClick={clickFunc}
+            _hover={{ bg: "white", color: "hsl(25, 97%, 53%)" }}
+          >
+            Submit
+          </Button>
+        </FormControl>
       </Flex>
     </>
   );
