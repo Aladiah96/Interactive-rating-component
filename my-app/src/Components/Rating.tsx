@@ -6,11 +6,15 @@ type RatingProps = {
   isActive: RatingType;
   clickFunc: () => void;
   activate: (button: number) => void;
+  options: number[];
 };
 
-export default function Rating({ isActive, clickFunc, activate }: RatingProps) {
-  const array = [1, 2, 3, 4, 5];
-
+export default function Rating({
+  isActive,
+  clickFunc,
+  activate,
+  options,
+}: RatingProps) {
   return (
     <>
       <Box py="10%" bg="hsl(213, 19%, 18%)">
@@ -43,7 +47,7 @@ export default function Rating({ isActive, clickFunc, activate }: RatingProps) {
             height="100%"
             pt="10%"
           >
-            {array.map((button, index) => {
+            {options.map((button, index) => {
               return (
                 <Button
                   key={index}

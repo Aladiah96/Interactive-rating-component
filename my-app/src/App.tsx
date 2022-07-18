@@ -19,6 +19,8 @@ export default function App() {
 
   const keys = Object.keys(rating);
 
+  const array = [1, 2, 3, 4, 5];
+
   const handleClick = () => {
     setState(!state);
   };
@@ -40,6 +42,7 @@ export default function App() {
             clickFunc={handleClick}
             isActive={rating}
             activate={activeBtn}
+            options={array}
           />
         ) : (
           <Thanks
